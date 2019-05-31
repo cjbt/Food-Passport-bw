@@ -15,7 +15,16 @@ route.post('/register', (req, res) => {
     const hash = bcrypt.hashSync(password, 10);
     db.register({ username, password: hash, email })
       .then(() => {
-        res.status(201).json({ message: `You have registered, ${username}!` });
+        const token = jwt.sign(user, process.env.JWT_SECRET, {
+          expiresIn: `30 days`
+        });
+        res
+          .status(201)
+          .json({
+            message: `You have registered, ${username}!`,
+            token: token,
+            user: username
+          });
       })
       .catch(err => res.status(500).json(err));
   }
