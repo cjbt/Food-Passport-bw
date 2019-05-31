@@ -1,8 +1,9 @@
 const express = require('express');
 const db = require('./restaurantsModel');
 const route = express.Router();
+const { authenticate } = require('../../auth/authMiddleWare');
 
-route.get('/', (req, res) => {
+route.get('/', authenticate, (req, res) => {
   db.get()
     .then(rest => {
       res.json(rest);
@@ -12,7 +13,7 @@ route.get('/', (req, res) => {
     });
 });
 
-route.get('/:id', (req, res) => {
+route.get('/:id', authenticate, (req, res) => {
   const { id } = req.params.id;
   db.getById(id)
     .then(rest => {
@@ -27,7 +28,7 @@ route.get('/:id', (req, res) => {
     });
 });
 
-route.post('/', (req, res) => {
+route.post('/', authenticate, (req, res) => {
   const body = req.body;
   console.log(body);
   if (!body.name || !body.city_id) {
@@ -42,7 +43,7 @@ route.post('/', (req, res) => {
     });
 });
 
-route.put('/:id', (req, res) => {
+route.put('/:id', authenticate, (req, res) => {
   const id = req.params.id;
   const { name, meal, comment, city_id } = req.body;
   if (!name || !meal || !comment || !city_id) {
@@ -59,7 +60,7 @@ route.put('/:id', (req, res) => {
     });
 });
 
-route.delete('/:id', (req, res) => {
+route.delete('/:id', authenticate, (req, res) => {
   const id = req.params.id;
   if (!id) {
     res.status(404).json({ message: 'id not found' });

@@ -1,8 +1,9 @@
 const express = require('express');
 const db = require('./cityModel');
 const route = express.Router();
+const { authenticate } = require('../../auth/authMiddleWare');
 
-route.get('/', (req, res) => {
+route.get('/', authenticate, (req, res) => {
   db.get()
     .then(city => {
       res.json(city);
@@ -10,7 +11,7 @@ route.get('/', (req, res) => {
     .catch(err => res.status(500).json(err));
 });
 
-route.post('/', (req, res) => {
+route.post('/', authenticate, (req, res) => {
   const { city } = req.body;
   if (!city) {
     res.status(422).json({ message: 'Missing city field' });
@@ -24,7 +25,7 @@ route.post('/', (req, res) => {
     });
 });
 
-route.delete('/:id', (req, res) => {
+route.delete('/:id', authenticate, (req, res) => {
   const { id } = req.params;
   if (!id) {
     req.status(404).json({ message: 'Cant find the ID youre looking for' });

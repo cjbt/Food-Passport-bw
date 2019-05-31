@@ -6,6 +6,7 @@ const db = require('../data/dbConfig');
 const authRouter = require('../auth/authRouter');
 const restRouter = require('./restaurants/restaurantsRoute');
 const passRouter = require('./city/cityRoutes');
+const { authenticate } = require('../auth/authMiddleWare');
 
 const server = express();
 
@@ -22,7 +23,7 @@ server.use('/auth', authRouter);
 server.use('/api/rest', restRouter);
 server.use('/api/passport', passRouter);
 
-server.get('/api/users', (req, res) => {
+server.get('/api/users', authenticate, (req, res) => {
   db('users')
     .then(users => {
       res.status(200).json(users);
