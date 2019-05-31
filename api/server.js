@@ -2,8 +2,10 @@ const express = require('express');
 const cors = require('cors');
 const helmet = require('helmet');
 const morgan = require('morgan');
-const db = require('./data/dbConfig');
-const authRouter = require('./auth/authRouter');
+const db = require('../data/dbConfig');
+const authRouter = require('../auth/authRouter');
+const restRouter = require('./restaurants/restaurantsRoute');
+const passRouter = require('./city/cityRoutes');
 
 const server = express();
 
@@ -17,6 +19,8 @@ server.get('/', (req, res) => {
 });
 
 server.use('/auth', authRouter);
+server.use('/api/rest', restRouter);
+server.use('/api/passport', passRouter);
 
 server.get('/api/users', (req, res) => {
   db('users')
