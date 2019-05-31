@@ -1,8 +1,10 @@
 # Food Passport Build week API
-### This API was built on short notice so.
+### This API was built on short notice so namings and commits may not be as professional as I'd like. I forgot this was going to be seen by people.
 
 ## Deployed
 https://foodpassword-bw.herokuapp.com/
+
+`You must do another get route to obtain the updated items in the restaurant/passport list if you POST, PUT and DELETE them`
 
 ### Auth Routes
 
