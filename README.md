@@ -4,14 +4,24 @@
 ## Deployed
 https://foodpassword-bw.herokuapp.com/
 
-```/auth/login
-/auth/register```
+### Auth Routes
 
 ```
+/auth/login
+/auth/register
+```
+### Credentials
+```
 "username": "cj",
-"password": "i<3Lambd4"```
+"password": "i<3Lambd4"
 
-```POST  /api/rest
+"username": "admin",
+"password": "admin"
+```
+### Restaurant Routes
+```
+POST  /api/rest
+Restricted
 {
    "name" - REQUIRED,
    "city_id" - REQUIRED
@@ -20,10 +30,13 @@ https://foodpassword-bw.herokuapp.com/
 }
 
 GET /api/rest
+Restricted
 
 GET by Id /api/rest/:id
+Restricted
 
 PUT /api/rest/:id
+Restricted
 {
    "name" 
    "city_id" 
@@ -31,13 +44,19 @@ PUT /api/rest/:id
    "comment"
 }
 
-DELETE /api/rest/:id```
-
-```GET /api/passport
+DELETE /api/rest/:id
+Restricted
+```
+### Passport Routes
+```
+GET /api/passport
+restricted
 
 POST /api/passport
+restricted
 {
    "city": REQUIRED
 }
 
-DELETE /api/passport/:id```
+DELETE /api/passport/:id
+```
