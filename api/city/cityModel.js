@@ -2,8 +2,20 @@ const db = require('../../data/dbConfig');
 
 const get = () => {
   const query = db('passports');
- 
-  return query;
+
+  let promises;
+  const result = query.map(item => {
+    promises = [item, getRestaurantsById(item.id)];
+    return Promise.all(promises).then(completed => {
+      let [cities, restaurants] = completed;
+      cities = {
+        ...completed[0],
+        restaurants
+      };
+      return cities;
+    });
+  });
+  return result;
 };
 
 const getRestaurantsById = id => {
