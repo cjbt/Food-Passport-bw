@@ -9,6 +9,8 @@ exports.up = function(knex, Promise) {
       .unsigned()
       .references('id')
       .inTable('passports')
+      .onDelete('CASCADE')
+      .onUpdate('CASCADE')
       .notNullable();
   });
 };
