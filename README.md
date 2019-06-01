@@ -6,6 +6,13 @@ https://foodpassword-bw.herokuapp.com/
 
 `You must do another get route to obtain the updated items in the restaurant/passport list if you POST, PUT and DELETE them`
 
+## Tech Stack
+- Node/express
+- knex
+- bcrypt
+- jsonwebtoken
+- sqlite3 Database
+
 ### Auth Routes
 
 ```
