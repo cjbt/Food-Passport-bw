@@ -4,7 +4,7 @@
 ## Deployed
 https://foodpassword-bw.herokuapp.com/
 
-`You must do another get route to obtain the updated items in the restaurant/passport list if you POST, PUT and DELETE them`
+`You must do another GET request to obtain the updated items in the restaurant/passport list if you POST, PUT and DELETE them`
 
 ## Tech Stack
 - Node/express
